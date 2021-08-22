@@ -22,6 +22,7 @@
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.2",
     "@types/styled-components": "^5.1.9",
+    "@types/webextension-polyfill": "^0.8.0",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.17.0",
     "eslint": "^7.23.0",
@@ -41,6 +42,6 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "styled-components": "^5.2.1",
-    "webextension-polyfill-ts": "^0.25.0"
+    "webextension-polyfill": "^0.8.0"
   }
 }

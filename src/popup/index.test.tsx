@@ -1,12 +1,10 @@
 import { mocked } from 'ts-jest/utils';
-import { browser } from 'webextension-polyfill-ts';
+import browser from 'webextension-polyfill';
 
 jest.mock('react-dom');
-jest.mock('webextension-polyfill-ts', () => ({
-  browser: {
-    tabs: {
-      query: jest.fn(),
-    },
+jest.mock('webextension-polyfill', () => ({
+  tabs: {
+    query: jest.fn(),
   },
 }));
 
