@@ -1,15 +1,15 @@
 {
-  "name": "web-extension-starter",
+  "name": "clockify-balance",
   "version": "1.0.0",
   "author": "Anders Nylund <anders@andersnylund.com>",
-  "description": "A simple TypeScript React starter for creating web extensions for Chrome and Firefox",
+  "description": "Clockfify Balance",
   "license": "MIT",
   "private": true,
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "chrome": "yarn extension --chromium-profile \"./.chrome\" --target chromium",
     "dev": "webpack --config webpack.dev.js",
-    "extension": "web-ext run --source-dir ./dist/ --keep-profile-changes --start-url http://localhost:3000",
+    "extension": "web-ext run --source-dir ./dist/ --keep-profile-changes --start-url https://clockify.me",
     "firefox": "yarn extension --firefox-profile \"./.firefox\"",
     "test": "jest --coverage",
     "watch": "webpack -w --config webpack.dev.js",
