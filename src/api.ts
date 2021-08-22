@@ -97,6 +97,5 @@ export const getTimeEntries = async (
     }
   );
   const timeEntries: TimeEntry[] = await response.json();
-  console.log('timeEntries', JSON.stringify(timeEntries, null, 2));
   return timeEntries;
 };

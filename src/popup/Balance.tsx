@@ -1,14 +1,20 @@
-import React, { FC, useEffect } from 'react';
-import { getUser, getTimeEntries } from '../api';
+import React, { FC, useEffect, useState } from 'react';
+import { getBalance } from '../expected-working-hours';
 
 export const Balance: FC = () => {
+  const [balance, setBalance] = useState(0);
+
   useEffect(() => {
     const getSomething = async () => {
-      const user = await getUser();
-      const timeEntries = await getTimeEntries(user.defaultWorkspace, user.id);
+      const result = await getBalance();
+      setBalance(result);
     };
     getSomething();
   }, []);
 
-  return <div></div>;
+  return (
+    <div style={{ color: balance < 0 ? 'red' : 'green' }}>{`${
+      balance > 0 ? '+' : '-'
+    } ${balance}`}</div>
+  );
 };
