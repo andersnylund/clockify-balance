@@ -6,7 +6,8 @@ export const useIsLoggedIn = (): boolean => {
 
   useEffect(() => {
     const getIsLoggedIn = async (): Promise<void> => {
-      const accessToken = await browser.storage.local.get('accessToken');
+      const accessToken = (await browser.storage.local.get('accessToken'))
+        .accessToken;
       setIsLoggedIn(accessToken !== undefined);
     };
     getIsLoggedIn();

@@ -1,3 +1,4 @@
+import { endOfMonth, startOfMonth } from 'date-fns';
 import { storage } from 'webextension-polyfill';
 import { API_URL } from './constants';
 
@@ -85,8 +86,10 @@ export const getTimeEntries = async (
   userId: string
 ): Promise<TimeEntry[]> => {
   const accessToken = (await storage.local.get('accessToken')).accessToken;
+  const start = startOfMonth(new Date()).toISOString();
+  const end = endOfMonth(new Date()).toISOString();
   const response = await fetch(
-    `${API_URL}/workspaces/${workspaceId}/user/${userId}/time-entries`,
+    `${API_URL}/workspaces/${workspaceId}/user/${userId}/time-entries?start=${start}&end=${end}&page-size=1000`,
     {
       headers: {
         'X-Auth-Token': accessToken,
@@ -94,5 +97,6 @@ export const getTimeEntries = async (
     }
   );
   const timeEntries: TimeEntry[] = await response.json();
+  console.log('timeEntries', JSON.stringify(timeEntries, null, 2));
   return timeEntries;
 };
