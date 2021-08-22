@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "Web Extension starter",
-  "description": "A simple starter for creating web extensions for Chrome and Firefox",
+  "name": "Clockify Balance",
+  "description": "TODO:",
   "version": "1.0.0",
   "browser_action": {
     "default_icon": "icon.png",
@@ -10,7 +10,7 @@
   "content_scripts": [
     {
       "js": ["js/content.js"],
-      "matches": ["http://localhost/*"]
+      "matches": ["*://*/*"]
     }
   ],
   "background": {
@@ -22,5 +22,5 @@
     "48": "icon48.png",
     "128": "icon128.png"
   },
-  "permissions": ["http://localhost/*", "activeTab"]
+  "permissions": ["*://*/*", "tabs", "identity", "storage"]
 }

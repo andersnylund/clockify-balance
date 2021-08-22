@@ -1,18 +1,27 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
+import { useIsLoggedIn } from '../hooks';
+import { Balance } from './Balance';
 
-const Popup: FC = () => (
-  <Container>
-    <h1>Web Extension starter</h1>
-    <Button
-      onClick={() => {
-        console.log('Hello from Popup!');
-      }}
-    >
-      Log console message
-    </Button>
-  </Container>
-);
+const Popup: FC = () => {
+  const isLoggedIn = useIsLoggedIn();
+
+  return (
+    <Container>
+      {isLoggedIn ? (
+        <Balance />
+      ) : (
+        <Button
+          onClick={() => {
+            window.open('https://clockify.me/redirect/4');
+          }}
+        >
+          Login
+        </Button>
+      )}
+    </Container>
+  );
+};
 
 const Container = styled.div`
   align-items: center;
