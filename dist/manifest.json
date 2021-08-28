@@ -10,7 +10,7 @@
   "content_scripts": [
     {
       "js": ["js/content.js"],
-      "matches": ["*://*/*"]
+      "matches": ["https://clockify.me/tracker"]
     }
   ],
   "background": {
@@ -22,5 +22,5 @@
     "48": "icon48.png",
     "128": "icon128.png"
   },
-  "permissions": ["*://*/*", "tabs", "identity", "storage"]
+  "permissions": ["https://*.clockify.me/*", "tabs", "identity", "storage"]
 }

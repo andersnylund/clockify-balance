@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import { useIsLoggedIn } from '../hooks';
-import { Balance } from './Balance';
+import { User } from './User';
 
 const Popup: FC = () => {
   const isLoggedIn = useIsLoggedIn();
@@ -9,7 +9,7 @@ const Popup: FC = () => {
   return (
     <Container>
       {isLoggedIn ? (
-        <Balance />
+        <User />
       ) : (
         <Button
           onClick={() => {

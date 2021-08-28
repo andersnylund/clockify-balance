@@ -1,10 +1,10 @@
-const path = require('path')
+const path = require('path');
 
 module.exports = {
   entry: {
     popup: path.join(__dirname, 'src/popup/index.tsx'),
     background: path.join(__dirname, 'src/background/background.ts'),
-    content: path.join(__dirname, 'src/content/content.ts'),
+    content: path.join(__dirname, 'src/content/content.tsx'),
   },
   output: {
     path: path.join(__dirname, 'dist/js'),
@@ -22,4 +22,4 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
   },
-}
+};

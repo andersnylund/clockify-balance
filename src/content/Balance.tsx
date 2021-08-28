@@ -12,9 +12,5 @@ export const Balance: FC = () => {
     getSomething();
   }, []);
 
-  return (
-    <div style={{ color: balance < 0 ? 'red' : 'green' }}>{`${
-      balance > 0 ? '+' : '-'
-    } ${balance}`}</div>
-  );
+  return <div style={{ color: balance < 0 ? 'red' : 'green' }}>{balance}</div>;
 };
