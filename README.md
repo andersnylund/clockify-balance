@@ -1,47 +1,43 @@
-# Web Extension starter
+# ![Icon](./dist/icon16.png) Clockify Balance
 
-![Icon](./dist/icon128.png)
+**Show your current hourly balance on [clockify.me](https://clockify.me)**
 
-A simple TypeScript React starter for creating web extensions for Chrome and Firefox
+A browser extension that adds a new section to the [tracker](https://clockify.me/tracker) on clockify.me where a friendly number shows up that tells you your current balance for this month in working hours.
 
-The starter uses
+## Assumptions made at this moment (hopefully configurable in the future)
 
-- `react` for the popup
-- `styled-components` for styling the popup
-- `web-ext` for installing and hot-reloading the installed extension
-- `webextension-polyfill-ts` to polyfill the differences of Chrome and Firefox
-- `jest` and `testing-library-react` for tests
-- `eslint` configured for TypeScript
-- `webpack` to build the extension
+- You live in Finland
+- You use Firefox
+- You work 7.5 hours per day
+- You have days off on Finnish holidays according to [date-holidays](https://github.com/commenthol/date-holidays)
+- You log your work in one workspace and with one user
+- Probably something else that I can't see or think of right now
 
 ## Requirements
 
 To be able to run the extension you need
 
-- Node.js version 14.x or higher
-- Yarn version 1.x
+- Node.js version 17.x or higher
+- npm version 7 or higher
 
 ## Setting up
 
-1. `yarn install` installs the required dependencies.
-2. `yarn watch` starts the dev webpack process, that will watch the TypeScript source code and compile it to `./dist/js` on each new file save.
-3. `yarn extension` starts development of the extension locally on your default browser. This uses [web-ext](https://github.com/mozilla/web-ext) and installs the extension in development mode on the browser. `web-ext` watches the output folder (./dist/js) of the webpack process and automatically reloads everytime there is an update to the compiled output.
-4. To start one of the browsers individually run
-   1. `yarn chrome` for Chrome
-   2. `yarn firefox` for Firefox
+1. `npm i` installs the required dependencies.
+2. `npm run watch` starts the dev webpack process, that will watch the TypeScript source code and compile it to `./dist/js` on each new file save.
+3. `npm run firefox` starts development of the extension locally on firefox. This uses [web-ext](https://github.com/mozilla/web-ext) and installs the extension in development mode on the browser. `web-ext` watches the output folder (./dist/js) of the webpack process and automatically reloads everytime there is an update to the compiled output.
 
 ## Browser
 
-The browser instances are started with new profile and settings that are stored in `.chrome` and `.firefox` folders. This enables to make changes to the browser settings that are persisted in those folders.
+The browser instance is started with new profile and settings that are stored in `.firefox` folder. This enables to make changes to the browser settings that are persisted in those folders while running the extensions in development mode.
 
 ## Production build
 
-To build a production version of the source code, run `yarn build`. This will output the code into `./dist/js`
+To build a production version of the source code, run `npm run build`. This will output the code into `./dist/js`
 
 ## Tests
 
-To run unit tests locally run `yarn test`
+Big TODO
 
 ## Linting
 
-To run the linter run `yarn lint`
+To run the linter run `npm run lint`
