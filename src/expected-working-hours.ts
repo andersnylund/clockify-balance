@@ -2,7 +2,12 @@ import { differenceInMinutes, parseISO } from 'date-fns';
 import { getTimeEntries, getUser } from './api';
 import { getExpectedWorkingHoursThisMonthSoFar } from './working-hours';
 
-export const getBalance = async (): Promise<number> => {
+interface Balance {
+  month: number;
+  week: number;
+}
+
+export const getBalance = async (): Promise<Balance> => {
   const expectedWorkingHoursThisMonthSoFar =
     getExpectedWorkingHoursThisMonthSoFar();
 
@@ -19,5 +24,8 @@ export const getBalance = async (): Promise<number> => {
   const totalHoursThisMonth = totalMinutesThisMonth / 60;
 
   const balanceNow = totalHoursThisMonth - expectedWorkingHoursThisMonthSoFar;
-  return balanceNow;
+  return {
+    month: balanceNow,
+    week: 0,
+  };
 };

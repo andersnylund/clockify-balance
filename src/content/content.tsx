@@ -1,8 +1,20 @@
 import ReactDOM from 'react-dom';
-import { Balance } from './Balance';
+import { App } from './App';
 
-const element = document.createElement('div');
+const containerId = 'clockify-balance';
+const containerNotMounted = !document.getElementById(containerId);
 
-document.querySelector('time-tracker-recorder')?.append(element);
+const renderBalance = () => {
+  const element = document.createElement('div');
+  element.style.marginBottom = '2rem';
+  element.id = containerId;
+  document.querySelector('entry-group')?.prepend(element);
+  ReactDOM.render(<App />, element);
+};
 
-ReactDOM.render(<Balance />, element);
+if (containerNotMounted) {
+  renderBalance();
+} else {
+  document.getElementById(containerId)?.remove();
+  renderBalance();
+}
