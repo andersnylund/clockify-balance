@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Clockify Balance",
-  "description": "clockify.me monthly work hour balance",
+  "description": "clockify.me working hour balance",
   "version": "1.0.0",
   "browser_action": {
     "default_icon": "icon.png",

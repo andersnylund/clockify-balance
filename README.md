@@ -2,7 +2,7 @@
 
 **Show your current hourly balance on [clockify.me](https://clockify.me)**
 
-A browser extension that adds a new section to the [tracker](https://clockify.me/tracker) on clockify.me where a friendly number shows up that tells you your current balance for this month in working hours.
+A browser extension that adds a new section to the [tracker](https://clockify.me/tracker) where a section shows up that tells you your current balance for this month in regards of working hours
 
 ## Assumptions made at this moment (hopefully configurable in the future)
 
