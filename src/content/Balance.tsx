@@ -3,11 +3,11 @@ import { useQuery } from 'react-query';
 import styled from 'styled-components';
 import { runtime } from 'webextension-polyfill';
 import { MessageType } from '../constants';
-import { getBalance } from '../expected-working-hours';
+import { getBalance } from '../expected-working-time';
 
-const BalanceText = styled.div<{ balance: number }>`
+const BalanceText = styled.div<{ isPositive: boolean }>`
   &&& {
-    color: ${({ balance }) => (balance >= 0 ? 'green' : 'red')};
+    color: ${({ isPositive }) => (isPositive ? 'green' : 'red')};
   }
 `;
 
@@ -34,10 +34,9 @@ export const Balance: FC = () => {
           <div className="cl-h6 cl-mb-0 cl-lh-1">Balance this month:</div>
           <BalanceText
             className="cl-h2 cl-mb-0 cl-ml-2 cl-lh-1"
-            balance={data.month}
+            isPositive={data.monthIsPositive}
           >
-            {`${data.month >= 0 ? '+ ' : ''}${data.month}`}
-            {/* TODO: format time from decimal number to hours and minutes */}
+            {`${data.monthIsPositive ? '+' : '-'} ${data.monthString}`}
           </BalanceText>
         </div>
       )}

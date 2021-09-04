@@ -1,15 +1,14 @@
-import { differenceInMinutes, parseISO } from 'date-fns';
+import { differenceInMinutes, parseISO, intervalToDuration } from 'date-fns';
 import { getTimeEntries, getUser } from './api';
-import { getExpectedWorkingHoursThisMonthSoFar } from './working-hours';
+import { getExpectedMinutesThisMonthSoFar } from './working-minutes';
 
 interface Balance {
-  month: number;
-  week: number;
+  monthString: string;
+  monthIsPositive: boolean;
 }
 
 export const getBalance = async (): Promise<Balance> => {
-  const expectedWorkingHoursThisMonthSoFar =
-    getExpectedWorkingHoursThisMonthSoFar();
+  const expectedMinutesThisMonthSoFar = getExpectedMinutesThisMonthSoFar();
 
   const user = await getUser();
   const timeEntries = await getTimeEntries(user.defaultWorkspace, user.id);
@@ -21,11 +20,12 @@ export const getBalance = async (): Promise<Balance> => {
     return prev + minutes;
   }, 0);
 
-  const totalHoursThisMonth = totalMinutesThisMonth / 60;
+  const minutes = totalMinutesThisMonth - expectedMinutesThisMonthSoFar;
 
-  const balanceNow = totalHoursThisMonth - expectedWorkingHoursThisMonthSoFar;
+  const result = intervalToDuration({ start: 0, end: minutes * 60 * 1000 });
+
   return {
-    month: balanceNow,
-    week: 0,
+    monthString: `${result.hours}:${result.minutes}`,
+    monthIsPositive: minutes >= 0,
   };
 };
