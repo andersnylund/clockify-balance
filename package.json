@@ -1,13 +1,12 @@
 {
   "name": "clockify-balance",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Anders Nylund <anders@andersnylund.com>",
   "description": "Clockfify Balance",
   "license": "MIT",
   "private": true,
   "scripts": {
     "build": "webpack --config webpack.prod.js",
-    "chrome": "yarn extension --chromium-profile \"./.chrome\" --target chromium",
     "dev": "webpack --config webpack.dev.js",
     "extension": "web-ext run --source-dir ./dist/ --keep-profile-changes --start-url https://clockify.me",
     "firefox": "yarn extension --firefox-profile \"./.firefox\"",
