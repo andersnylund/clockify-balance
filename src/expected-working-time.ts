@@ -1,22 +1,37 @@
 import { intervalToDuration } from 'date-fns';
 import { getTrackedMinutesSoFar } from './tracked-minutes';
-import { getExpectedMinutesThisMonthSoFar } from './working-minutes';
+import { getExpectedMinutesSoFar } from './working-minutes';
 
 interface Balance {
   monthString: string;
   monthIsPositive: boolean;
+  weekString: string;
+  weekIsPositive: boolean;
 }
 
 export const getBalance = async (): Promise<Balance> => {
-  const expectedMinutesThisMonthSoFar = getExpectedMinutesThisMonthSoFar();
-  const trackedMinutesSoFar = await getTrackedMinutesSoFar();
+  const expectedMinutesThisMonthSoFar = getExpectedMinutesSoFar('month');
+  const expectedMinutesThisWeekSoFar = getExpectedMinutesSoFar('week');
 
-  const minutes = trackedMinutesSoFar - expectedMinutesThisMonthSoFar;
+  const trackedMinutesThisMonth = await getTrackedMinutesSoFar('month');
+  const trackedMinutesThisWeek = await getTrackedMinutesSoFar('week');
 
-  const result = intervalToDuration({ start: 0, end: minutes * 60 * 1000 });
+  const monthMinutes = trackedMinutesThisMonth - expectedMinutesThisMonthSoFar;
+  const monthInterval = intervalToDuration({
+    start: 0,
+    end: monthMinutes * 60 * 1000,
+  });
+
+  const weekMinutes = trackedMinutesThisWeek - expectedMinutesThisWeekSoFar;
+  const weekInterval = intervalToDuration({
+    start: 0,
+    end: weekMinutes * 60 * 1000,
+  });
 
   return {
-    monthString: `${result.hours}:${result.minutes}`,
-    monthIsPositive: minutes >= 0,
+    monthString: `${monthInterval.hours}:${monthInterval.minutes}`,
+    monthIsPositive: monthMinutes >= 0,
+    weekString: `${weekInterval.hours}:${weekInterval.minutes}`,
+    weekIsPositive: weekMinutes >= 0,
   };
 };

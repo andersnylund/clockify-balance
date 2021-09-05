@@ -3,22 +3,21 @@ import { mocked } from 'ts-jest/utils';
 import { getTimeEntries, getUser } from './api';
 import { TimeEntry, User } from './clockify';
 import { getBalance } from './expected-working-time';
-import { getExpectedMinutesThisMonthSoFar } from './working-minutes';
 
-tk.freeze('2021-08-30');
+tk.freeze('2021-08-10T13:00:00.000+03:00');
 
-jest.mock('./working-minutes');
 jest.mock('./api');
 
 describe('expected-working-time', () => {
   describe('getBalance', () => {
     it('formats the time correctly', async () => {
-      mocked(getExpectedMinutesThisMonthSoFar).mockReturnValue(7.5 * 60);
       mocked(getUser).mockResolvedValue(mockUser);
       mocked(getTimeEntries).mockResolvedValue(mockTimeEntries);
       expect(await getBalance()).toEqual({
         monthIsPositive: false,
-        monthString: '3:43',
+        monthString: '9:13',
+        weekIsPositive: false,
+        weekString: '3:13',
       });
     });
   });
@@ -130,6 +129,23 @@ const mockTimeEntries: TimeEntry[] = [
     timeInterval: {
       start: '2021-08-30T07:30:00Z',
       end: '2021-08-30T08:00:00Z',
+      duration: 'PT30M',
+    },
+    workspaceId: 'workspaceId',
+    isLocked: false,
+    customFieldValues: null,
+  },
+  {
+    id: '612c9842ff6efe46f55a08fa',
+    description: 'task 0',
+    tagIds: [],
+    userId: 'userId',
+    billable: false,
+    taskId: null,
+    projectId: null,
+    timeInterval: {
+      start: '2021-08-20T07:30:00Z',
+      end: '2021-08-20T08:00:00Z',
       duration: 'PT30M',
     },
     workspaceId: 'workspaceId',

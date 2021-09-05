@@ -1,12 +1,17 @@
-import { getDate, isWeekend, setDate } from 'date-fns';
+import { differenceInDays, getDate, isWeekend, setDate } from 'date-fns';
 import { isHoliday } from './holidays';
+import { getStartDate } from './starting-date';
+import { Interval } from './types';
 
-export const getExpectedMinutesThisMonthSoFar = (): number => {
-  const currentDate = getDate(new Date());
+export const getExpectedMinutesSoFar = (interval: Interval): number => {
+  const startDate = getStartDate(interval);
+  const startDateDay = getDate(startDate);
 
-  const days = Array(currentDate)
+  const numberOfDays = differenceInDays(new Date(), startDate) + 1;
+
+  const days = Array(numberOfDays)
     .fill(undefined)
-    .map((_, index) => index + 1);
+    .map((_, index) => index + startDateDay);
 
   const expectedMinutes = days.reduce((prev, dateOfMonth) => {
     const day = setDate(new Date(), dateOfMonth);

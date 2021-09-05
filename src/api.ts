@@ -1,4 +1,4 @@
-import { endOfMonth, startOfMonth } from 'date-fns';
+import { endOfDay } from 'date-fns';
 import { TimeEntry, User } from './clockify';
 import { API_URL } from './constants';
 
@@ -16,10 +16,11 @@ export const getUser = async (): Promise<User> => {
 
 export const getTimeEntries = async (
   workspaceId: string,
-  userId: string
+  userId: string,
+  startDate: Date
 ): Promise<TimeEntry[]> => {
-  const start = startOfMonth(new Date()).toISOString();
-  const end = endOfMonth(new Date()).toISOString();
+  const start = startDate.toISOString();
+  const end = endOfDay(new Date()).toISOString();
   const response = await fetch(
     `${API_URL}/workspaces/${workspaceId}/user/${userId}/time-entries?start=${start}&end=${end}&page-size=1000`,
     {
