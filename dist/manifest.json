@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
   "name": "Clockify Balance",
-  "description": "clockify.me working hour balance",
-  "version": "1.0.1",
+  "description": "clockify.me work time balance",
+  "version": "1.0.2",
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html"

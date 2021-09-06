@@ -1,8 +1,8 @@
 {
   "name": "clockify-balance",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Anders Nylund <anders@andersnylund.com>",
-  "description": "Clockfify Balance",
+  "description": "Clockfify Balance – clockify.me work time balance",
   "license": "MIT",
   "private": true,
   "scripts": {
