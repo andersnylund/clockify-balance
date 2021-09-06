@@ -2,8 +2,8 @@ import React, { FC, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import styled from 'styled-components';
 import { runtime } from 'webextension-polyfill';
+import { getBalance } from '../balance';
 import { MessageType } from '../constants';
-import { getBalance } from '../expected-working-time';
 
 const BalanceText = styled.div<{ isPositive: boolean }>`
   &&& {

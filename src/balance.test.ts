@@ -2,7 +2,7 @@ import tk from 'timekeeper';
 import { mocked } from 'ts-jest/utils';
 import { getTimeEntries, getUser } from './api';
 import { TimeEntry, User } from './clockify';
-import { getBalance } from './expected-working-time';
+import { getBalance } from './balance';
 
 tk.freeze('2021-08-10T13:00:00.000+03:00');
 
@@ -15,9 +15,9 @@ describe('expected-working-time', () => {
       mocked(getTimeEntries).mockResolvedValue(mockTimeEntries);
       expect(await getBalance()).toEqual({
         monthIsPositive: false,
-        monthString: '9:13',
+        monthString: '48:13',
         weekIsPositive: false,
-        weekString: '3:13',
+        weekString: '10:43',
       });
     });
   });
