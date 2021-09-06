@@ -37,7 +37,7 @@ export const Balance: FC = () => {
               className="cl-h2 cl-mb-0 cl-ml-2 cl-lh-1"
               isPositive={data.monthIsPositive}
             >
-              {`${data.monthIsPositive ? '+' : '-'} ${data.monthString}`}
+              {`${data.monthIsPositive ? '+' : '-'}${data.monthString}`}
             </BalanceText>
           </div>
           <div className="cl-d-flex cl-align-items-center">
@@ -46,7 +46,7 @@ export const Balance: FC = () => {
               className="cl-h2 cl-mb-0 cl-ml-2 cl-lh-1"
               isPositive={data.weekIsPositive}
             >
-              {`${data.weekIsPositive ? '+' : '-'} ${data.weekString}`}
+              {`${data.weekIsPositive ? '+' : '-'}${data.weekString}`}
             </BalanceText>
           </div>
         </div>
