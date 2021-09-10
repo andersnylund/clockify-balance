@@ -15,12 +15,12 @@ export const getTrackedMinutesSoFar = async (
     startDate
   );
 
-  const totalMinutesThisMonth = timeEntries.reduce((prev, curr) => {
+  const totalMinutesSoFar = timeEntries.reduce((prev, curr) => {
     const startTimestamp = parseISO(curr.timeInterval.start);
     const endTimestamp = parseISO(curr.timeInterval.end);
     const minutes = differenceInMinutes(endTimestamp, startTimestamp);
     return prev + minutes;
   }, 0);
 
-  return totalMinutesThisMonth;
+  return totalMinutesSoFar;
 };

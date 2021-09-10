@@ -1,36 +1,21 @@
 import { getTrackedMinutesSoFar } from './tracked-minutes';
-import { Interval } from './types';
+import { Balance, Interval, IntervalBalance, INTERVALS } from './types';
 import { getExpectedMinutesSoFar } from './working-minutes';
 
-interface Balance {
-  monthString: string;
-  monthIsPositive: boolean;
-  weekString: string;
-  weekIsPositive: boolean;
-}
-
 export const getBalance = async (): Promise<Balance> => {
-  const {
-    hours: monthHours,
-    minutes: monthMinutes,
-    isPositive: monthIsPositive,
-  } = await getBalanceForInterval('month');
+  const balance = new Map<Interval, IntervalBalance>();
 
-  const {
-    hours: weekHours,
-    minutes: weekMinutes,
-    isPositive: weekIsPositive,
-  } = await getBalanceForInterval('week');
+  for (const interval of INTERVALS) {
+    const intervalBalance = await getBalanceForInterval(interval);
+    balance.set(interval, intervalBalance);
+  }
 
-  return {
-    monthString: `${monthHours}:${monthMinutes}`,
-    monthIsPositive,
-    weekString: `${weekHours}:${weekMinutes}`,
-    weekIsPositive,
-  };
+  return balance;
 };
 
-const getBalanceForInterval = async (interval: Interval) => {
+const getBalanceForInterval = async (
+  interval: Interval
+): Promise<IntervalBalance> => {
   const expectedMinutesSoFar = getExpectedMinutesSoFar(interval);
   const trackedMinutesSoFar = await getTrackedMinutesSoFar(interval);
 
@@ -39,8 +24,9 @@ const getBalanceForInterval = async (interval: Interval) => {
   const minutes = Math.abs(totalMinuteBalance) - hours * 60;
 
   return {
-    hours: hours.toString().padStart(2, '0'),
-    minutes: minutes.toString().padStart(2, '0'),
+    stringRepresentation: `${hours.toString().padStart(2, '0')}:${minutes
+      .toString()
+      .padStart(2, '0')}`,
     isPositive: totalMinuteBalance >= 0,
   };
 };

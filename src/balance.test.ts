@@ -3,6 +3,7 @@ import { mocked } from 'ts-jest/utils';
 import { getTimeEntries, getUser } from './api';
 import { TimeEntry, User } from './clockify';
 import { getBalance } from './balance';
+import { Interval, IntervalBalance } from './types';
 
 tk.freeze('2021-08-10T13:00:00.000+03:00');
 
@@ -10,15 +11,16 @@ jest.mock('./api');
 
 describe('expected-working-time', () => {
   describe('getBalance', () => {
-    it('formats the time correctly', async () => {
+    it('formats the times correctly', async () => {
       mocked(getUser).mockResolvedValue(mockUser);
       mocked(getTimeEntries).mockResolvedValue(mockTimeEntries);
-      expect(await getBalance()).toEqual({
-        monthIsPositive: false,
-        monthString: '48:13',
-        weekIsPositive: false,
-        weekString: '10:43',
-      });
+      expect(await getBalance()).toEqual(
+        new Map<Interval, IntervalBalance>([
+          ['month', { stringRepresentation: '48:13', isPositive: false }],
+          ['week', { stringRepresentation: '10:43', isPositive: false }],
+          ['day', { stringRepresentation: '03:13', isPositive: false }],
+        ])
+      );
     });
   });
 });
