@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Clockify Balance",
   "description": "clockify.me work time balance",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html"
@@ -10,7 +10,7 @@
   "content_scripts": [
     {
       "js": ["js/content.js"],
-      "matches": ["https://clockify.me/tracker"]
+      "matches": ["https://*.clockify.me/*"]
     }
   ],
   "background": {

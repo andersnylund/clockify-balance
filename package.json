@@ -1,6 +1,6 @@
 {
   "name": "clockify-balance",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Anders Nylund <anders@andersnylund.com>",
   "description": "Clockfify Balance – clockify.me work time balance",
   "license": "MIT",
@@ -8,8 +8,8 @@
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "dev": "webpack --config webpack.dev.js",
-    "extension": "web-ext run --source-dir ./dist/ --keep-profile-changes --start-url https://clockify.me",
-    "firefox": "yarn extension --firefox-profile \"./.firefox\"",
+    "extension": "web-ext run --source-dir ./dist/ --keep-profile-changes --start-url https://app.clockify.me/tracker",
+    "firefox": "npm run extension --firefox-profile \"./.firefox\"",
     "test": "jest --coverage",
     "watch": "webpack -w --config webpack.dev.js",
     "lint": "eslint src"
@@ -34,7 +34,7 @@
     "ts-jest": "^26.5.4",
     "ts-loader": "^8.0.17",
     "typescript": "^4.2.3",
-    "web-ext": "^6.3.0",
+    "web-ext": "^6.7.0",
     "webpack": "^5.27.1",
     "webpack-cli": "^4.5.0",
     "webpack-merge": "^5.7.3"
