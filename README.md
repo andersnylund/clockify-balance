@@ -19,8 +19,9 @@ To be able to run the extension you need
 
 - Node.js version 17.x or higher
 - npm version 7 or higher
+- An unix based system like MacOS
 
-## Setting up
+## Development environment setup
 
 1. `npm i` installs the required dependencies.
 2. `npm run watch` starts the dev webpack process, that will watch the TypeScript source code and compile it to `./dist/js` on each new file save.
@@ -36,7 +37,7 @@ To build a production version of the source code, run `npm run build`. This will
 
 ## Tests
 
-Big TODO
+TODO
 
 ## Linting
 
