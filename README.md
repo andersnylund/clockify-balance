@@ -17,8 +17,8 @@ A browser extension that adds a new section to the [tracker](https://clockify.me
 
 To be able to run the extension you need
 
-- Node.js version 17.x or higher
-- npm version 7 or higher
+- node.js version 16 or higher
+- npm version 8 or higher
 - An unix based system like MacOS
 
 ## Development environment setup
